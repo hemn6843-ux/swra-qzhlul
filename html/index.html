@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemn Ultra</title>
+
+<style>
+:root{
+  --bg:#0a0a0f;
+  --card:#12121a;
+  --text:#fff;
+}
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:var(--bg);
+  color:var(--text);
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* animated gradient */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background:linear-gradient(45deg,#ff00cc,#00f7ff,#ff6600,#00ff88);
+  animation:move 10s infinite linear;
+  filter:blur(120px);
+  z-index:-2;
+}
+
+@keyframes move{
+  0%{transform:translate(0,0);}
+  50%{transform:translate(-50%,-50%);}
+  100%{transform:translate(0,0);}
+}
+
+/* blur bg image */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url("https://via.placeholder.com/500") center/cover;
+  filter:blur(25px) brightness(0.4);
+  z-index:-1;
+}
+
+/* toggle */
+.toggle{
+  position:absolute;
+  top:20px;
+  left:20px;
+  padding:10px 15px;
+  background:#ffffff20;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* profile */
+.profile{
+  margin-top:60px;
+}
+
+.profile img{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:50%;
+  padding:4px;
+  background:linear-gradient(45deg,#ff00cc,#00f7ff);
+  box-shadow:0 0 25px #ff00cc, 0 0 50px #00f7ff;
+}
+
+.name{
+  font-size:28px;
+  margin:10px;
+}
+
+.badge{
+  color:#00f7ff;
+}
+
+/* stats */
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin:20px;
+}
+
+.stat{
+  background:#ffffff10;
+  padding:10px 15px;
+  border-radius:10px;
+}
+
+/* links */
+.link{
+  display:block;
+  margin:12px auto;
+  padding:14px;
+  width:260px;
+  border-radius:12px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.link:hover{
+  transform:scale(1.08);
+}
+
+.insta{background:linear-gradient(45deg,#ff00cc,#ff6600);}
+.whatsapp{background:linear-gradient(45deg,#00c853,#00e676);}
+.call{background:linear-gradient(45deg,#2979ff,#00e5ff);}
+.telegram{background:linear-gradient(45deg,#00b0ff,#2962ff);}
+.snap{background:linear-gradient(45deg,#fffc00,#ffd600); color:black}
+
+/* qr */
+.qr img{
+  width:150px;
+  margin-top:20px;
+  border-radius:10px;
+}
+
+/* light mode */
+.light{
+  --bg:#ffffff;
+  --text:#000;
+}
+
+footer{
+  margin:30px;
+  opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="toggle" onclick="toggleMode()">🌙 Mode</div>
+
+<div class="profile">
+  <img src="hemn.jpg" alt="Hemn Photo">
+  <div class="name">Hemn Ali <span class="badge">✔️</span></div>
+  <p>Dreamer • Creator • Developer 🚀</p>
+</div>
+
+<div class="stats">
+  <div class="stat">120+ Posts</div>
+  <div class="stat">5K Followers</div>
+  <div class="stat">250 Following</div>
+</div>
+
+<a href="https://www.instagram.com/hema.qzhlul1" class="link insta">📸 Instagram</a>
+<a href="https://wa.me/9647515163937" class="link whatsapp">💬 WhatsApp</a>
+<a href="https://snapchat.com/t/U6gQr7FH" class="link snap">👻 Snapchat</a>
+
+<div class="qr">
+  <h3>Scan Me</h3>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.instagram.com/hema.qzhlul1">
+</div>
+
+<footer>
+© HeMa QzhLuL🚀
+</footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+</script><div class="views">
+  👀 Views: <span id="viewCount">Loading...</span>
+</div>
+</body>
+</html>
+<script>
+fetch("https://api.countapi.xyz/hit/hemn-ultra/profile")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("viewCount").innerText = data.value;
+  });
+</script>
